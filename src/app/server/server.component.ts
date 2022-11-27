@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ServersComponent } from '../servers/servers.component';
 
 
 @Component({
@@ -11,11 +12,12 @@ import { Component } from '@angular/core';
   `]
 })
 export class ServerComponent {
-    serverId: number = 10; //alt -> serverId = 10
     serverStatus: string = 'offline'; //alt -> serverStatus 
+    serverNewName = '';
 
-    constructor() {
+    constructor(private serversComponent: ServersComponent) {
       this.serverStatus = Math.random() > 0.5 ? 'online' : 'offline';
+      this.serverNewName = this.serversComponent.serverName;
     }
 
     getServerStatus(){
@@ -26,4 +28,5 @@ export class ServerComponent {
       return this.serverStatus === 'online' ? 'green' : 'red';
     }
 }
+
 
